@@ -9,13 +9,13 @@ function ManageContent() {
   const [sections, setSections] = useState([]);
   const [sectionTitle, setSectionTitle] = useState("");
   const [message, setMessage] = useState("");
-
   const [lessonForms, setLessonForms] = useState({});
 
   const loadSections = () => {
     axios
       .get(`http://localhost:8080/api/courses/${courseId}/sections`)
       .then((res) => {
+          console.log("SECTIONS DATA:", res.data);
         setSections(Array.isArray(res.data) ? res.data : []);
       })
       .catch(() => setSections([]));

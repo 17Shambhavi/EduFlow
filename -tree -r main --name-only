@@ -1,0 +1,82 @@
+[33mcommit 1215e345880286b243b48da085485656147690bd[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Merge: 3a7c6bc 4a05670
+Author: Shambhavi <shambhavijaiswal469@gmail.com>
+Date:   Sun Aug 2 18:36:39 2026 +0530
+
+    Merge backend and frontend into main branch
+
+ .gitattributes                                     |   2 [32m+[m
+ .gitignore                                         |  35 [32m+++[m
+ .mvn/wrapper/maven-wrapper.properties              |   3 [32m+[m
+ mvnw                                               | 295 [32m+++++++++++++++++++++[m
+ mvnw.cmd                                           | 189 [32m+++++++++++++[m
+ pom.xml                                            | 123 [32m+++++++++[m
+ src/main/java/com/lms/config/CloudinaryConfig.java |  30 [32m+++[m
+ src/main/java/com/lms/config/CorsConfig.java       |  35 [32m+++[m
+ src/main/java/com/lms/config/DataInitializer.java  |  51 [32m++++[m
+ src/main/java/com/lms/config/SecurityConfig.java   |  58 [32m++++[m
+ .../java/com/lms/controller/AdminController.java   |  33 [32m+++[m
+ .../java/com/lms/controller/AuthController.java    |  29 [32m++[m
+ .../com/lms/controller/CertificateController.java  |  38 [32m+++[m
+ .../java/com/lms/controller/CourseController.java  |  78 [32m++++++[m
+ .../com/lms/controller/EnrollmentController.java   |  41 [32m+++[m
+ .../com/lms/controller/NotificationController.java |  40 [32m+++[m
+ .../com/lms/controller/ProgressController.java     |  38 [32m+++[m
+ .../java/com/lms/controller/QuizController.java    |  52 [32m++++[m
+ src/main/java/com/lms/dto/AuthRequest.java         |  21 [32m++[m
+ src/main/java/com/lms/dto/AuthResponse.java        |  18 [32m++[m
+ src/main/java/com/lms/dto/CourseRequest.java       |  17 [32m++[m
+ src/main/java/com/lms/dto/QuestionRequest.java     |  13 [32m+[m
+ src/main/java/com/lms/dto/QuizRequest.java         |  19 [32m++[m
+ src/main/java/com/lms/model/Assignment.java        |  38 [32m+++[m
+ .../java/com/lms/model/AssignmentSubmission.java   |  43 [32m+++[m
+ src/main/java/com/lms/model/Certificate.java       |  34 [32m+++[m
+ src/main/java/com/lms/model/Coupon.java            |  36 [32m+++[m
+ src/main/java/com/lms/model/Course.java            |  52 [32m++++[m
+ src/main/java/com/lms/model/Enrollment.java        |  45 [32m++++[m
+ src/main/java/com/lms/model/ForumReply.java        |  30 [32m+++[m
+ src/main/java/com/lms/model/ForumThread.java       |  46 [32m++++[m
+ src/main/java/com/lms/model/Lesson.java            |  44 [32m+++[m
+ src/main/java/com/lms/model/LessonProgress.java    |  38 [32m+++[m
+ src/main/java/com/lms/model/LessonWatchLog.java    |  38 [32m+++[m
+ src/main/java/com/lms/model/Notification.java      |  39 [32m+++[m
+ src/main/java/com/lms/model/Payment.java           |  52 [32m++++[m
+ src/main/java/com/lms/model/Question.java          |  43 [32m+++[m
+ src/main/java/com/lms/model/Quiz.java              |  43 [32m+++[m
+ src/main/java/com/lms/model/QuizAttempt.java       |  42 [32m+++[m
+ src/main/java/com/lms/model/Review.java            |  38 [32m+++[m
+ src/main/java/com/lms/model/Section.java           |  30 [32m+++[m
+ src/main/java/com/lms/model/User.java              |  51 [32m++++[m
+ .../com/lms/repository/AssignmentRepository.java   |  12 [32m+[m
+ .../repository/AssignmentSubmissionRepository.java |  17 [32m++[m
+ .../com/lms/repository/CertificateRepository.java  |  14 [32m+[m
+ .../java/com/lms/repository/CouponRepository.java  |  12 [32m+[m
+ .../java/com/lms/repository/CourseRepository.java  |  29 [32m++[m
+ .../com/lms/repository/EnrollmentRepository.java   |  22 [32m++[m
+ .../com/lms/repository/ForumReplyRepository.java   |  13 [32m+[m
+ .../com/lms/repository/ForumThreadRepository.java  |   0
+ .../lms/repository/LessonProgressRepository.java   |  21 [32m++[m
+ .../java/com/lms/repository/LessonRepository.java  |  13 [32m+[m
+ .../lms/repository/LessonWatchLogRepository.java   |  27 [32m++[m
+ .../com/lms/repository/NotificationRepository.java |  14 [32m+[m
+ .../java/com/lms/repository/PaymentRepository.java |  25 [32m++[m
+ .../com/lms/repository/QuestionRepository.java     |  13 [32m+[m
+ .../com/lms/repository/QuizAttemptRepository.java  |  20 [32m++[m
+ .../java/com/lms/repository/QuizRepository.java    |  12 [32m+[m
+ .../java/com/lms/repository/ReviewRepository.java  |  20 [32m++[m
+ .../java/com/lms/repository/SectionRepository.java |  12 [32m+[m
+ .../java/com/lms/repository/UserRepository.java    |  14 [32m+[m
+ src/main/java/com/lms/service/AuthService.java     |  72 [32m+++++[m
+ .../java/com/lms/service/CertificateService.java   | 109 [32m++++++++[m
+ src/main/java/com/lms/service/CouponService.java   |  38 [32m+++[m
+ src/main/java/com/lms/service/CourseService.java   |  93 [32m+++++++[m
+ .../java/com/lms/service/EnrollmentService.java    |  76 [32m++++++[m
+ .../java/com/lms/service/NotificationService.java  |  39 [32m+++[m
+ src/main/java/com/lms/service/ProgressService.java |  72 [32m+++++[m
+ src/main/java/com/lms/service/QuizService.java     | 108 [32m++++++++[m
+ src/main/java/com/lms/util/JwtAuthFilter.java      |  62 [32m+++++[m
+ src/main/java/com/lms/util/JwtUtil.java            |  58 [32m++++[m
+ .../com/lms_backend/LmsBackendApplication.java     |  18 [32m++[m
+ src/main/resources/application.properties          |  21 [32m++[m
+ .../lms_backend/LmsBackendApplicationTests.java    |  13 [32m+[m
+ 74 files changed, 3129 insertions(+)
