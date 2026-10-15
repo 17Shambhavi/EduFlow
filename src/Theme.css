@@ -1,0 +1,126 @@
+:root {
+  --bg: #f5f0e1;
+  --card: #fbf8ef;
+  --card-hover: #f0ead6;
+  --olive: #6b7a3a;
+  --olive-dark: #4a5528;
+  --olive-light: #e4e8cf;
+  --accent: #8a6a45;
+  --text: #2e2f23;
+  --muted: #7a7b68;
+  --border: #ddd5bc;
+  --danger: #b5483a;
+  --success: #5b8a3c;
+  --radius: 12px;
+  --shadow: 0 2px 10px rgba(74, 85, 40, 0.1);
+  --shadow-lg: 0 8px 24px rgba(74, 85, 40, 0.18);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+body {
+  display: block;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  line-height: 1.5;
+}
+
+#root {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+a {
+  color: var(--olive-dark);
+}
+
+h1, h2, h3, h4 {
+  color: var(--text);
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input,
+select,
+textarea {
+  font-family: inherit;
+  background: #fff;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--olive);
+  box-shadow: 0 0 0 3px var(--olive-light);
+}
+
+/* Reusable classes (aage sab pages mein use honge) */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px;
+}
+
+.btn {
+  background: var(--olive);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background 0.2s, transform 0.1s;
+}
+.btn:hover {
+  background: var(--olive-dark);
+}
+.btn:active {
+  transform: scale(0.97);
+}
+.btn-outline {
+  background: transparent;
+  color: var(--olive-dark);
+  border: 1px solid var(--olive);
+}
+.btn-outline:hover {
+  background: var(--olive-light);
+}
+
+.page {
+  max-width: 1100px;
+  margin: 32px auto;
+  padding: 0 20px;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: var(--olive-light);
+  color: var(--olive-dark);
+}

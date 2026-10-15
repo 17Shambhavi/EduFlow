@@ -49,19 +49,25 @@ function CourseDetail() {
       </p>
       <p>Price: ₹{course.price}</p>
       <p>Instructor: {course.instructor?.name}</p>
+
       <button onClick={handleEnroll} style={{ padding: "10px 20px" }}>
         Enroll Now
-        <button onClick={handleEnroll} style={{ padding: "10px 20px" }}>
-          Enroll Now
-        </button>
-        {localStorage.getItem("role") === "INSTRUCTOR" && (
-          <Link to={`/manage-content/${course.id}`}>
-            <button style={{ padding: "10px 20px", marginLeft: "10px" }}>
-              Manage Content
-            </button>
-          </Link>
-        )}
       </button>
+
+      <Link to={`/learn/${course.id}`}>
+        <button style={{ padding: "10px 20px", marginLeft: "10px" }}>
+          Go to Course
+        </button>
+      </Link>
+
+      {localStorage.getItem("role") === "INSTRUCTOR" && (
+        <Link to={`/manage-content/${course.id}`}>
+          <button style={{ padding: "10px 20px", marginLeft: "10px" }}>
+            Manage Content
+          </button>
+        </Link>
+      )}
+
       {message && <p>{message}</p>}
     </div>
   );

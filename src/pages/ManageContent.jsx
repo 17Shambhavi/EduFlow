@@ -16,15 +16,19 @@ function ManageContent() {
       .get(`http://localhost:8080/api/courses/${courseId}/sections`)
       .then((res) => {
           console.log("SECTIONS DATA:", res.data);
-        setSections(Array.isArray(res.data) ? res.data : []);
+          console.log("IS ARRAY?", Array.isArray(res.data));
+        setSections(Array.isArray(res.data) ? res.data : (res.data.content || []));
       })
-      .catch(() => setSections([]));
+      .catch((err) => {
+        console.log("SECTIONS ERROR:", err);
+        setSections([]);
+      });
   };
 
   useEffect(() => {
     loadSections();
   }, [courseId]);
-
+useEffect(() => { console.log("STATE NOW:", sections); }, [sections]);
   const addSection = async (e) => {
     e.preventDefault();
     try {
@@ -74,6 +78,7 @@ function ManageContent() {
   return (
     <div style={{ maxWidth: "700px", margin: "50px auto" }}>
       <h2>Manage Course Content</h2>
+      <p>TEST: {sections.length} sections</p>
       {message && <p>{message}</p>}
 
       <form onSubmit={addSection} style={{ marginBottom: "30px" }}>
