@@ -1,6 +1,26 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
+// Each role gets its own menu
+const LINKS = {
+  STUDENT: [
+    { to: "/courses", label: "Courses" },
+    { to: "/dashboard", label: "Dashboard" },
+    { to: "/my-enrollments", label: "My Enrollments" },
+  ],
+  INSTRUCTOR: [
+    { to: "/courses", label: "Courses" },
+    { to: "/dashboard", label: "Dashboard" },
+    { to: "/create-course", label: "Create Course" },
+    { to: "/my-courses", label: "My Courses" },
+  ],
+  ADMIN: [
+    { to: "/courses", label: "Courses" },
+    { to: "/dashboard", label: "Dashboard" },
+    { to: "/admin/courses", label: "Pending Courses" },
+  ],
+};
+
 function Navbar() {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
@@ -13,12 +33,17 @@ function Navbar() {
 
   const initial = name ? name.charAt(0).toUpperCase() : "?";
 
+  const links = token
+    ? LINKS[role] || LINKS.STUDENT
+    : [{ to: "/courses", label: "Courses" }];
+  const dropLinks = links.filter((l) => l.to !== "/courses");
+
   const handleLogout = () => {
     localStorage.clear();
+    setDropOpen(false);
     navigate("/login");
   };
 
-  // dropdown ke bahar click karne par band ho jaye
   useEffect(() => {
     const handler = (e) => {
       if (dropRef.current && !dropRef.current.contains(e.target)) {
@@ -131,29 +156,11 @@ function Navbar() {
             Edu<span>Flow</span>
           </Link>
           <div className={`nav-left ${menuOpen ? "open" : ""}`}>
-            <NavLink to="/courses" className="nav-link" onClick={closeAll}>
-              Courses
-            </NavLink>
-            {token && (
-              <NavLink to="/dashboard" className="nav-link" onClick={closeAll}>
-                Dashboard
+            {links.map((l) => (
+              <NavLink key={l.to} to={l.to} className="nav-link" onClick={closeAll}>
+                {l.label}
               </NavLink>
-            )}
-            {token && (
-              <NavLink to="/my-enrollments" className="nav-link" onClick={closeAll}>
-                My Enrollments
-              </NavLink>
-            )}
-            {role === "INSTRUCTOR" && (
-              <NavLink to="/create-course" className="nav-link" onClick={closeAll}>
-                Create Course
-              </NavLink>
-            )}
-            {role === "INSTRUCTOR" && (
-              <NavLink to="/my-courses" className="nav-link" onClick={closeAll}>
-                My Courses
-              </NavLink>
-            )}
+            ))}
           </div>
         </div>
 
@@ -172,8 +179,11 @@ function Navbar() {
                     <b>{name}</b>
                     <small>{role ? role.toLowerCase() : ""}</small>
                   </div>
-                  <Link to="/dashboard" onClick={closeAll}>Dashboard</Link>
-                  <Link to="/my-enrollments" onClick={closeAll}>My Enrollments</Link>
+                  {dropLinks.map((l) => (
+                    <Link key={l.to} to={l.to} onClick={closeAll}>
+                      {l.label}
+                    </Link>
+                  ))}
                   <button className="logout" onClick={handleLogout}>Logout</button>
                 </div>
               )}
